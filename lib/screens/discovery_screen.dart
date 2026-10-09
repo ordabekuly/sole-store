@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../widgets/product_art.dart';
 import 'product_detail_screen.dart';
+import 'registration_screen.dart';
 
 class DiscoveryScreen extends StatefulWidget {
   const DiscoveryScreen({super.key});
@@ -70,6 +71,16 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
           style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 3),
         ),
         actions: [
+          IconButton(
+            tooltip: 'Create account',
+            icon: const Icon(Icons.person_add_alt_1_outlined),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => const RegistrationScreen(),
+              ),
+            ),
+          ),
           TextButton.icon(
             onPressed: showCart,
             icon: const Icon(Icons.shopping_bag_outlined),

@@ -20,3 +20,15 @@ ordabekuly/sole-store private репозиторийі құрылды; README cl
 Пайдаланушы сұрауымен репозиторий public болды. README қолжетімділік ақпараты жаңартылды.
 GitHub API private=false, visibility=public қайтарды.
 
+
+## CHG-0012 — 2026-10-09 — feat: LAB 6 тіркелу формасы
+
+Create account навигациясы және registration_screen.dart қосылды.
+Form/GlobalKey/FormState, төрт TextEditingController, live/submit validators,
+пароль сәйкестігін қайта тексеру, role dropdown, Terms checkbox және success
+SnackBar жұмыс істейді. Терминалға профиль деректері және жасырылған парольдер шығады.
+Бұрын аккаунт экраны жоқ еді; енді бөлек тіркелу UI демонстрациясы бар.
+
+Тексеру: 10 widget тесті өтті, оның ішінде LAB 6 үшін 5 тест.
+280×568, 390×844, 1440×900 өлшемдерінде registration overflow жоқ.
+flutter analyze — No issues found; flutter build web өтті. Android құрылғысында тексерілмеген.
