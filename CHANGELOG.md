@@ -14,3 +14,9 @@ Android құрылғысында тексерілмеген. API/база/BLoC �
 
 ordabekuly/sole-store private репозиторийі құрылды; README clone/run және
 келесі өзгерістерді жіберу командаларымен жаңартылды.
+
+## CHG-0011 — 2026-10-09 — docs: репозиторийді public ету
+
+Пайдаланушы сұрауымен репозиторий public болды. README қолжетімділік ақпараты жаңартылды.
+GitHub API private=false, visibility=public қайтарды.
+

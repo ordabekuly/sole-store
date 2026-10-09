@@ -64,7 +64,7 @@ Bag ішіндегі санын тексереді. RenderFlex және басқ
 ## GitHub
 
 Репозиторий: [ordabekuly/sole-store](https://github.com/ordabekuly/sole-store).
-Репозиторий private: бағалау үшін оқытушыны collaborator ретінде қосыңыз.
+Репозиторий public: код пен README сілтемесі бар кез келген адамға ашық.
 
 ```sh
 git clone https://github.com/ordabekuly/sole-store.git
@@ -80,3 +80,4 @@ git add .
 git commit -m "feat: describe your change"
 git push
 ```
+
