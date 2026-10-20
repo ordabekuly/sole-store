@@ -1,6 +1,6 @@
 # SOLE — Sneaker Store
 
-Flutter capstone MVP және LAB 5: кроссовка таңдауды жеңілдететін мобильді дүкен.
+Flutter capstone MVP және LAB 5–7: кроссовка таңдауды жеңілдететін мобильді дүкен.
 Нысаналы пайдаланушылар — студенттер мен күнделікті аяқ киім іздейтін адамдар.
 
 ## Іске қосу
@@ -21,7 +21,7 @@ Android телефон/эмулятор үшін `flutter devices`, кейін `
 - Sticky төменгі жолақ: SafeArea → Row → Expanded → Add to Cart.
 - StatefulWidget және setState: таңдаулылар, EU өлшемі, себет саны.
 - Bag терезесі: өлшем бойынша саны және жалпы бағасы.
-- Offline векторлық иллюстрация: сыртқы сурет немесе желі қажет емес.
+- Offline PNG мұқабалары: жоба ішіндегі векторлық суреттен жасалған, желі қажет емес.
 
 Деректер демонстрациялық. Себет пен таңдаулылар тек ағымдағы сессияда сақталады.
 Төлем, REST API, база және BLoC кейінгі кезеңдерде қосылады.
@@ -35,6 +35,7 @@ lib/
   screens/discovery_screen.dart
   screens/product_detail_screen.dart
   screens/registration_screen.dart
+  screens/profile_screen.dart
   widgets/product_art.dart
 test/widget_test.dart
 test/registration_test.dart
@@ -85,6 +86,40 @@ Registration тесттері міндетті өрістерді, live текс
 сәйкестікті, checkbox талабын, сәтті submit пен рөлді тексереді.
 280×568, 390×844 және 1440×900 өлшемдерінде форма overflow бермейді.
 Жалпы 10 widget тесті өтті; flutter analyze қате таппады.
+## LAB 7 — Navigation & Tabs
+
+- Root экранда **BottomNavigationBar**: Feed / Favorites / Profile.
+- Feed төрт тауарды суретімен, атауымен және бағасымен көрсетеді.
+- Bookmark басқанда тауар Favorites қойындысына бірден қосылады/алынады.
+- Profile: қонақ профилі, сессияда сақталатын баптау және LAB 6 формасына өту.
+- IndexedStack және жеке ScrollController қойындылардың күйін сақтайды.
+- `Navigator.push` арқылы толық Product объектісі detail конструкторына және
+  `RouteSettings.arguments` ішіне беріледі: name, description, imageAsset, price, category, color.
+- Detail AppBar Back және экран ішіндегі **Back to collection** батырмалары
+  `Navigator.pop(context)` шақырады. Категория, favorites, себет және tab күйі сақталады.
+- Product мұқабалары `assets/products/` ішінде, интернетсіз ашылады.
+
+Соңғы тексеру: **14 widget тесті өтті**, lutter analyze --no-pub — қате жоқ,
+Web build сәтті. Физикалық Android құрылғысы тексерілмеген.
+
+### Қысқа бейнежазба
+
+[MP4 жазбасын ашу](docs/lab7-navigation.mp4) · [GIF нұсқасы](docs/lab7-navigation.gif)
+
+![LAB 7 — Feed, Detail, Favorites, Profile](docs/lab7-navigation.gif)
+
+Бұл 390×844 өлшеміндегі Flutter қолданбасының автоматты UI сценарийінен алынған
+нақты рендер кадрлары: Feed → Detail → bookmark → экран ішіндегі Back → Favorites
+→ Detail → AppBar Back → Profile → баптау → Feed. Ұзақтығы шамамен 16 секунд.
+Физикалық телефоннан түсірілген видео емес.
+
+Жазбаны қайта жасау:
+
+```sh
+flutter test tool/record_navigation_test.dart
+python -m pip install Pillow imageio-ffmpeg
+python tool/encode_recording.py
+```
 ## GitHub
 
 Репозиторий: [ordabekuly/sole-store](https://github.com/ordabekuly/sole-store).

@@ -6,6 +6,17 @@ class ProductArt extends StatelessWidget {
   final Product product;
   const ProductArt({super.key, required this.product});
   @override
+  Widget build(BuildContext context) => Image.asset(
+    product.imageAsset,
+    fit: BoxFit.cover,
+    semanticLabel: product.name,
+  );
+}
+
+class VectorProductArt extends StatelessWidget {
+  final Product product;
+  const VectorProductArt({super.key, required this.product});
+  @override
   Widget build(BuildContext context) => ColoredBox(
     color: product.color,
     child: CustomPaint(painter: _ShoePainter(), child: const SizedBox.expand()),

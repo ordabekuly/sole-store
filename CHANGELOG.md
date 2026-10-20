@@ -32,3 +32,18 @@ SnackBar жұмыс істейді. Терминалға профиль дере
 Тексеру: 10 widget тесті өтті, оның ішінде LAB 6 үшін 5 тест.
 280×568, 390×844, 1440×900 өлшемдерінде registration overflow жоқ.
 flutter analyze — No issues found; flutter build web өтті. Android құрылғысында тексерілмеген.
+
+## 2026-10-20 — feat: LAB 7 Navigation & Tabs
+
+Feed/Favorites/Profile BottomNavigationBar, IndexedStack күй сақтау, профиль
+баптауы, толық Product аргументтері және екі Navigator.pop батырмасы қосылды.
+Әр тауардың жеке сипаттамасы және жергілікті PNG мұқабасы бар.
+Favorites detail/bookmark өзгерістерімен синхрондалады. LAB 5–6 мүмкіндіктері сақталды.
+
+Бейне: docs/lab7-navigation.mp4 және GIF — автоматты Flutter UI сценарийінің
+нақты рендер жазбасы; физикалық құрылғы жазбасы емес.
+
+Тексеру: 14 widget тесті өтті; flutter analyze — No issues found; Web build өтті.
+Толық объект, екі Back, favorites синхрондалуы, фильтр/себет/профиль күйі
+және 280/390/1440 ендерінде үш root қойындысы тексерілді.
+MP4: 196 кадр, 390x844, 12.5 FPS, 15.68 секунд; FFmpeg decode қатесіз.

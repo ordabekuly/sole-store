@@ -27,6 +27,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final p = widget.product;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(onPressed: () => Navigator.pop(context)),
         title: const Text(
           'Product preview',
           maxLines: 1,
@@ -122,10 +123,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Light on your feet. Easy on your day. A breathable upper and soft cushioning make this your go-to pair for campus, coffee runs and everything in between.',
-                style: TextStyle(height: 1.6),
-              ),
+              Text(p.description, style: TextStyle(height: 1.6)),
               const SizedBox(height: 24),
               Text(
                 'Select size · EU $selectedSize',
@@ -146,6 +144,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     .toList(),
               ),
               const SizedBox(height: 24),
+              OutlinedButton.icon(
+                key: const Key('back-to-list'),
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back),
+                label: const Text('Back to collection'),
+              ),
+              const SizedBox(height: 12),
               const Text(
                 'Free delivery · 14-day returns',
                 style: TextStyle(color: Color(0xFF315D45)),
