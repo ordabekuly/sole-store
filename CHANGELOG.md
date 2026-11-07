@@ -47,3 +47,17 @@ Favorites detail/bookmark өзгерістерімен синхрондалад�
 Толық объект, екі Back, favorites синхрондалуы, фильтр/себет/профиль күйі
 және 280/390/1440 ендерінде үш root қойындысы тексерілді.
 MP4: 196 кадр, 390x844, 12.5 FPS, 15.68 секунд; FFmpeg decode қатесіз.
+
+## 2026-11-07 — feat: LW8 динамикалық каталог
+
+Profile ішінен ашылатын Smart Catalog қосылды. Lazy ListView.separated,
+екі бағанды GridView.builder (0.72), ортақ каталог және режим ауыстырғыш бар.
+RefreshIndicator 1500 мс күтіп, жаңа бірегей ID бар элементті басына қосады.
+Тізімде endToStart Dismissible, қызыл delete фоны және floating UNDO SnackBar бар.
+UNDO бастапқы индекске қайтарады; бос каталог Reset Catalog арқылы қалпына келеді.
+Архитектура: models/catalog_product.dart, widgets/catalog_tile.dart,
+screens/smart_catalog_screen.dart; Profile навигациясы қосылды.
+Тексеру: 21 widget тесті өтті. Өшіру/UNDO индексі, refresh кідірісі мен басына
+қосу, толық босату/reset, 280/390/1440 өлшемдеріндегі екі режим тексерілді.
+
+Қосымша: Profile навигациясы және List/Grid нақты pull қимылдары өтті.

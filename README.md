@@ -139,3 +139,23 @@ git add .
 git commit -m "feat: describe your change"
 git push
 ```
+
+## LW8 — Smart Catalog
+
+Open **Profile → LW8 Smart Catalog**.
+
+- ListView.separated renders rows lazily; GridView.builder shares the same data.
+- The grid has two columns and childAspectRatio: 0.72.
+- Pull down either view to refresh. AlwaysScrollableScrollPhysics enables this even for short/empty catalogs.
+- Refresh waits 1500 ms, then inserts a uniquely identified product at index 0.
+- In List view, swipe right-to-left to delete. Dismissible uses ValueKey(product.id).
+- The floating SnackBar offers UNDO, restoring the original index (clamped if the collection changed).
+- Empty catalogs show Catalog is Empty and Reset Catalog.
+- Reset restores the four original items. Changes are session-only; no server request is sent.
+
+Files: lib/models/catalog_product.dart, lib/widgets/catalog_tile.dart,
+lib/screens/smart_catalog_screen.dart, lib/screens/profile_screen.dart.
+
+Defense: builders construct visible children on demand; a large Column constructs all children
+at once. A stable ID key identifies the product after removal/insertion, whereas an index key
+can refer to a different product when the collection changes. Future.delayed simulates network latency.
