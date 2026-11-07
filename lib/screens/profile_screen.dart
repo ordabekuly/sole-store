@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'registration_screen.dart';
 import 'smart_catalog_screen.dart';
+import 'global_catalog_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -62,6 +63,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             icon: const Icon(Icons.dynamic_feed),
             label: const Text('LW8 Smart Catalog'),
+          ),
+          OutlinedButton.icon(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => const GlobalCatalogScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.shopping_cart_outlined),
+            label: const Text('LW9 Global Cart'),
           ),
           const Text(
             'SOLE · LAB 7\nDiscover. Save. Make it yours.',

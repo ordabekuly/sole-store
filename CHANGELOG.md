@@ -61,3 +61,15 @@ screens/smart_catalog_screen.dart; Profile навигациясы қосылды
 қосу, толық босату/reset, 280/390/1440 өлшемдеріндегі екі режим тексерілді.
 
 Қосымша: Profile навигациясы және List/Grid нақты pull қимылдары өтті.
+
+## 2026-11-07 — feat: LW9 ортақ Provider себеті
+
+ChangeNotifier CartProvider және MaterialApp үстіндегі ChangeNotifierProvider қосылды.
+Profile → LW9 Global Cart ішінде алты тауар, таңдау toggle-дары, live AppBar Badge,
+Cart View, жеке өшіру, жалпы баға және Clear All бар. Екі экран бір provider қолданады.
+Таңдау ID бойынша сақталады; қайталанатын дана жоқ. Деректер тек сессияда сақталады.
+Бұрынғы LAB 5 өлшем/сан себеті бөлек демонстрация ретінде сақталған.
+Тексеру: LW9 бес тесті өтті: notifyListeners, жалпы баға, өзгертілмейтін items,
+Profile навигациясы, Cart View-дан кері синхрондалу, Clear All және үш экран өлшемі.
+
+Соңғы тексеру: барлық 26 тест өтті, analyzer қате таппады, Web build өтті.

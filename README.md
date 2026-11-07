@@ -159,3 +159,21 @@ lib/screens/smart_catalog_screen.dart, lib/screens/profile_screen.dart.
 Defense: builders construct visible children on demand; a large Column constructs all children
 at once. A stable ID key identifies the product after removal/insertion, whereas an index key
 can refer to a different product when the collection changes. Future.delayed simulates network latency.
+
+## LW9 — Global Cart with Provider
+
+Open **Profile → LW9 Global Cart**. Select from six products, then tap the AppBar
+cart badge to open Cart View. Remove one product or Clear All and return:
+selection toggles, badge count and total immediately reflect the shared state.
+
+- lib/providers/cart_provider.dart: CartProvider extends ChangeNotifier;
+  immutable public item list, count, totalPrice, toggle/remove/clear and notifyListeners.
+- lib/main.dart: ChangeNotifierProvider wraps MaterialApp, so pushed routes share
+  one provider instance. context.watch rebuilds readers; context.read handles actions.
+- lib/screens/global_catalog_screen.dart: six products, selection toggles, live Badge.
+- lib/screens/global_cart_screen.dart: selected products, remove buttons, total and Clear All.
+- test/global_cart_test.dart: provider behavior, route access, cross-screen sync and
+  280/390/1440 layouts. Prices are integer KZT. Selection is session-only, without quantities.
+
+LW9 is a separate teaching flow; the earlier size/quantity-based LAB 5 demo Bag remains separate.
+Provider reference: https://pub.dev/packages/provider
