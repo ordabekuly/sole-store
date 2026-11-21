@@ -214,3 +214,57 @@ loading/error/retry/refresh, disposed-screen responses, Hero, page swipe/counter
 copy sheet and cart at 280/390/1440 screen widths. Actual service live request returned
 20 products (`dart run tool/check_cloud_api.dart`). Physical Airplane-mode and browser
 CORS behavior were not manually tested. Widget network responses use controlled fixtures.
+
+## LW11 — Offline Notes & Settings Vault
+
+Open **Profile → LW11 Notes Vault**. Enter a username and press Save, toggle Dark Mode,
+add notes, use their checkboxes, and delete individual notes. Blank titles cannot be added.
+
+### Architecture
+
+- `main.dart`: ensureInitialized → await VaultProvider.load → runApp.
+  MaterialApp selects its first theme from the already-loaded value, avoiding a light
+  Flutter frame before a saved dark preference. A startup storage error offers Retry storage.
+- `models/note_item.dart`: immutable NoteItem(id, title, dateText, isCompleted), toJson/fromJson.
+- `providers/vault_provider.dart`: SharedPreferences bool/string reads with defaults,
+  jsonEncode of the full note list and jsonDecode restoration. Mutation methods await
+  setBool/setString and check the result before confirming the change in UI.
+- `screens/notes_vault_screen.dart`: responsive single-screen settings/notes UI.
+- `test/vault_test.dart`: model round-trip, disk-interface mock restoration, corrupted JSON,
+  first-frame dark theme, CRUD and name/theme controls at 280/390/1440 widths.
+
+Keys: `app_theme_dark_mode` (bool, default false), `user_display_name` (String,
+default Guest User), `vault_notes_json` (one JSON String, default []).
+The `VaultProvider.memory()` fallback is for widget previews/tests; production main
+always supplies the preloaded persistent provider. No passwords/tokens are stored.
+
+### Force-quit defense procedure
+
+1. Save username, add two notes, mark one completed and enable Dark Mode.
+2. Wait for each Saved confirmation, then fully terminate the app process.
+3. Reopen the launcher icon and navigate to Profile → LW11 Notes Vault.
+4. Show the restored dark theme, username, note order and completion state.
+5. Delete one note and repeat to prove deletion also persists.
+
+On Android, closing a screen or hot reload is not a process-kill test. If swiping
+away does not terminate the process, use Settings → Apps → SOLE → Force stop,
+then reopen. Do not uninstall or clear app data: those erase the stored preferences.
+For browser checks, use the same origin/port because preferences use localStorage.
+
+### Defense question
+
+SharedPreferences stores small key-value settings and JSON strings locally; it is
+not encrypted credential storage and is not suitable for critical durable records.
+Keychain (Apple) and Android Keystore-backed secure storage serve credential/key
+protection. Android Keystore itself manages cryptographic keys, not arbitrary notes.
+Awaiting the plugin write helps ordinary cold restarts but does not turn preferences
+into a crash-safe transactional database.
+
+Reference: https://pub.dev/packages/shared_preferences
+
+Validation result (2026-11-21): all 45 automated tests passed; analyzer clean;
+Web build passed. Native Android build was attempted, but new Gradle/SDK components
+needed downloading. SDK Platform 35 download was too slow to complete the native
+verification; the attempt was stopped and the temporary headless emulator was closed.
+No real OS force-quit persistence pass is claimed. Run the defense steps above on your
+phone/emulator once the Android SDK dependencies finish installing.

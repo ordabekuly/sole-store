@@ -4,6 +4,7 @@ import 'registration_screen.dart';
 import 'smart_catalog_screen.dart';
 import 'global_catalog_screen.dart';
 import 'cloud_products_screen.dart';
+import 'notes_vault_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -84,6 +85,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             icon: const Icon(Icons.cloud_outlined),
             label: const Text('LW10 Cloud Explorer'),
+          ),
+          OutlinedButton.icon(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (_) => const NotesVaultScreen()),
+            ),
+            icon: const Icon(Icons.note_alt_outlined),
+            label: const Text('LW11 Notes Vault'),
           ),
           const Text(
             'SOLE · LAB 7\nDiscover. Save. Make it yours.',
