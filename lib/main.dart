@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/cart_provider.dart';
+import 'providers/cloud_cart_provider.dart';
 
 import 'screens/discovery_screen.dart';
 
@@ -10,8 +11,11 @@ void main() => runApp(const SoleStoreApp());
 class SoleStoreApp extends StatelessWidget {
   const SoleStoreApp({super.key});
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (_) => CartProvider(),
+  Widget build(BuildContext context) => MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => CartProvider()),
+      ChangeNotifierProvider(create: (_) => CloudCartProvider()),
+    ],
     child: MaterialApp(
       title: 'SOLE — Sneaker Store',
       debugShowCheckedModeBanner: false,

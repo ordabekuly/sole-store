@@ -177,3 +177,40 @@ selection toggles, badge count and total immediately reflect the shared state.
 
 LW9 is a separate teaching flow; the earlier size/quantity-based LAB 5 demo Bag remains separate.
 Provider reference: https://pub.dev/packages/provider
+
+## LW10 — Cloud Product Explorer
+
+Open **Profile → LW10 Cloud Explorer**. Live source: https://fakestoreapi.com/products
+
+- http: ^1.2.0; GET with a 10-second timeout, explicit HTTP 404/500/other errors,
+  malformed JSON and offline/timeout handling. No bundled products silently replace API failures.
+- models/cloud_product.dart defines the API Product separately from the local SOLE Product.
+  fromJson accepts integer/double prices and ratings and provides null/type fallbacks.
+- services/product_api.dart fetches/decodes data; injectable http.Client supports deterministic tests.
+- screens/cloud_products_screen.dart implements Loading / Success / Error + Retry Connection,
+  ListView.separated thumbnails and pull-to-refresh, including short/empty feeds.
+- screens/cloud_product_detail_screen.dart has ProductDetailScreen, Hero product_image_ID,
+  PageView.builder, counter, animated indicators, description, category and sticky Add to Cart.
+- Fake Store API provides ONE image per product. The 3 carousel pages are explicitly labelled
+  standard/cropped/wide views of that same image, not three independent product photos.
+- providers/cloud_cart_provider.dart keeps selected API products in a session cart in USD.
+  This is separate from earlier KZT teaching catalogs; it is shared through root MultiProvider.
+- Share opens a modal sheet with narxoz://store/product/ID and a Clipboard copy button.
+  The lab displays/copies the URI; OS-level deep-link routing is not registered.
+- Android INTERNET permission is included in the main manifest, including release builds.
+
+### Defense and offline recovery
+
+1. Open LW10 while online: show spinner then live products, refresh once.
+2. Open a product: demonstrate Hero, swipe pages, show counter and dots.
+3. Add to Cart, open Share and copy the narxoz link.
+4. On a physical phone disable Wi-Fi/mobile data (Airplane mode), then pull to refresh
+   or reopen LW10 to force a new request. Show the error and Retry Connection button.
+5. Restore the connection and tap Retry Connection; products reload without restarting.
+
+Validation: 37 automated tests passed, analyzer clean. Tests cover numeric JSON,
+HTTP 200/404/500/403, timeout (including actual timeout timer), invalid JSON,
+loading/error/retry/refresh, disposed-screen responses, Hero, page swipe/counter,
+copy sheet and cart at 280/390/1440 screen widths. Actual service live request returned
+20 products (`dart run tool/check_cloud_api.dart`). Physical Airplane-mode and browser
+CORS behavior were not manually tested. Widget network responses use controlled fixtures.

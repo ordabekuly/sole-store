@@ -73,3 +73,19 @@ Cart View, жеке өшіру, жалпы баға және Clear All бар. �
 Profile навигациясы, Cart View-дан кері синхрондалу, Clear All және үш экран өлшемі.
 
 Соңғы тексеру: барлық 26 тест өтті, analyzer қате таппады, Web build өтті.
+
+## 2026-11-21 — feat: LW10 бұлттық тауарлар және карусель
+
+Profile → LW10 Cloud Explorer қосылды. http ^1.2.0, 10 секунд timeout,
+200/404/500 және offline/JSON қателері, Loading/Feed/Error+Retry күйлері бар.
+Product.fromJson сан/бос мәндерден қорғалған. Feed refresh, Hero, PageView,
+санағыш/анимациялық нүктелер, sticky Add to Cart және deep link copy sheet қосылды.
+API бір фото береді: үш бет сол фотоның стандарт/жақын/кең көріністері ретінде
+анық белгіленген. CloudCartProvider USD өнімдерін сессияда сақтайды.
+Android main manifest-ке INTERNET рұқсаты қосылды. OS deep-link handler қосылған жоқ.
+Тексеру: 37 тест өтті; analyzer таза. Өз ProductApi сервисі live API-ден 20 өнім алды.
+Модель, HTTP/timeout/offline, retry/refresh, dispose, Hero, carousel, copy және cart
+280/390/1440 өлшемдерінде тексерілді. Алғашқы үлкен экран каруселі тым биік болды:
+ені 600-ге шектелді. Тесттер қайта өтті. Нақты телефон Airplane mode және
+браузер CORS қолмен тексерілмеген; офлайн қалпына келу автоматты тестте тексерілді.
+Web build сәтті өтті.
